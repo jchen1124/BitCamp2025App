@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:bitcamp_2025/screens/live_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key, required this.name});
@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Color(0xFF47E0F8),
         elevation: 10,
         title: const Text(
-          "Eco Vision",
+          "Echo Vision",
           style: TextStyle(
             fontSize: 28,
             color: Color.fromARGB(255, 5, 5, 5),
@@ -79,7 +79,13 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(height: 24),
                     Center(
                       child: ElevatedButton.icon(
-                        onPressed: () {},
+                        // Go to live view page
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => LiveView()),
+                          );
+                        },
                         icon: const Icon(Icons.visibility),
                         label: const Text("Live View"),
                         style: ElevatedButton.styleFrom(
@@ -93,6 +99,65 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           textStyle: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          elevation: 3,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+
+            Card(
+              color: Colors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              elevation: 6,
+              child: Padding(
+                padding: EdgeInsets.all(24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "View Recording History",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 12),
+                    Text(
+                      "Review your past environments",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white.withOpacity(0.75),
+                      ),
+                    ),
+
+                    SizedBox(height: 30),
+
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Text("View History"),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF47E0F8),
+                          //text color
+                          foregroundColor: Colors.black,
+                          padding: EdgeInsets.symmetric(
+                            vertical: 16,
+                            horizontal: 32,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          textStyle: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
