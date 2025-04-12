@@ -9,163 +9,154 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 68, 66, 66),
+      backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
-        backgroundColor: Color(0xFF47E0F8),
+        backgroundColor: const Color(0xFF0FF0FC),
         elevation: 10,
         title: const Text(
           "Echo Vision",
           style: TextStyle(
             fontSize: 28,
-            color: Color.fromARGB(255, 5, 5, 5),
-            fontWeight: FontWeight.w600,
-            letterSpacing: 1.2,
+            color: Colors.black,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 1.5,
           ),
         ),
         centerTitle: true,
-        automaticallyImplyLeading: false,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Welcome,",
               style: TextStyle(
-                color: Colors.white.withOpacity(0.7),
-                fontSize: 20,
+                color: Colors.white.withOpacity(0.6),
+                fontSize: 22,
               ),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 6),
             Text(
               name,
               style: const TextStyle(
-                color: Color(0xFF47E0F8),
-                fontSize: 32,
+                color: Color(0xFF0FF0FC),
+                fontSize: 34,
                 fontWeight: FontWeight.bold,
+                letterSpacing: 1.2,
               ),
             ),
             const SizedBox(height: 32),
 
-            // Optional card to highlight live view feature
-            Card(
-              color: Colors.black,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              elevation: 6,
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Live Environment View",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      "Monitor real-time environmental conditions using our vision AI.",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white.withOpacity(0.75),
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    Center(
-                      child: ElevatedButton.icon(
-                        // Go to live view page
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => LiveView()),
-                          );
-                        },
-                        icon: const Icon(Icons.visibility),
-                        label: const Text("Live View"),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF47E0F8),
-                          foregroundColor: Colors.black,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 16,
-                            horizontal: 32,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          textStyle: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          elevation: 3,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+            // Live View Card
+            _buildFeatureCard(
+              context,
+              title: "🔴 Live Environment View",
+              description:
+                  "Monitor real-time environmental conditions using our vision AI.",
+              buttonText: "Live View",
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LiveView()),
+                );
+              },
+            ),
+
+            const SizedBox(height: 20),
+
+            // History Card
+            _buildFeatureCard(
+              context,
+              title: "📼 View Recording History",
+              description: "Review and analyze your past environments.",
+              buttonText: "View History",
+              onPressed: () {
+                // TODO: Implement
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFeatureCard(
+    BuildContext context, {
+    required String title,
+    required String description,
+    required String buttonText,
+    required VoidCallback onPressed,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFF1F1F1F), Color(0xFF2C2C2C)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.tealAccent.withOpacity(0.2),
+            blurRadius: 12,
+            spreadRadius: 1,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
               ),
             ),
-            SizedBox(height: 10),
-
-            Card(
-              color: Colors.black,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+            const SizedBox(height: 12),
+            Text(
+              description,
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white.withOpacity(0.75),
               ),
-              elevation: 6,
-              child: Padding(
-                padding: EdgeInsets.all(24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "View Recording History",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
+            ),
+            const SizedBox(height: 28),
+            Center(
+              child: InkWell(
+                onTap: onPressed,
+                borderRadius: BorderRadius.circular(14),
+                splashColor: Colors.cyanAccent,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 36,
+                    vertical: 14,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF0FF0FC),
+                    borderRadius: BorderRadius.circular(14),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFF0FF0FC).withOpacity(0.4),
+                        blurRadius: 12,
+                        offset: const Offset(0, 6),
                       ),
+                    ],
+                  ),
+                  child: Text(
+                    buttonText,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 1.1,
                     ),
-                    SizedBox(height: 12),
-                    Text(
-                      "Review your past environments",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white.withOpacity(0.75),
-                      ),
-                    ),
-
-                    SizedBox(height: 30),
-
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text("View History"),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF47E0F8),
-                          //text color
-                          foregroundColor: Colors.black,
-                          padding: EdgeInsets.symmetric(
-                            vertical: 16,
-                            horizontal: 32,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          textStyle: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          elevation: 3,
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),

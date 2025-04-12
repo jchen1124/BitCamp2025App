@@ -41,12 +41,12 @@ class _CreateProfileState extends State<CreateProfile> {
         _profiles.add(profile);
       });
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          duration: Duration(milliseconds: 800),
-          content: Text('Profile Added'),
-        ),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(
+      //     duration: Duration(milliseconds: 800),
+      //     content: Text('Profile Added'),
+      //   ),
+      // );
 
       final String name = _usersFullName.text;
 
