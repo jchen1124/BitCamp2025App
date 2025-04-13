@@ -1,7 +1,4 @@
-- name: Set up Flutter
-  uses: subosito/flutter-action@v2
-  with:
-    flutter-version: '3.19.6' 
+name: Deploy Flutter Web to GitHub Pages
 
 on:
   push:
@@ -19,7 +16,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'
+          flutter-version: '3.29.2'  # 🔧 Using your local Flutter version
 
       - name: Install dependencies
         run: flutter pub get
