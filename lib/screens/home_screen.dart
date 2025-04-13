@@ -100,7 +100,7 @@ class HomeScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.tealAccent.withOpacity(0.3),
+            color: Colors.tealAccent,
             blurRadius: 12,
             offset: const Offset(0, 5),
           ),
@@ -121,11 +121,7 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             description,
-            style: TextStyle(
-              fontSize: 15,
-              color: Colors.white.withOpacity(0.88),
-              height: 1.4,
-            ),
+            style: TextStyle(fontSize: 15, color: Colors.white, height: 1.4),
           ),
           const SizedBox(height: 24),
           Center(
