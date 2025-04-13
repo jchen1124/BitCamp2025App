@@ -117,7 +117,7 @@ class _StartScreenState extends State<StartScreen> {
                       shadowColor: colorScheme.secondary.withOpacity(0.5),
                     ),
                     child: const Text(
-                      "GET STARTED",
+                      "GET STARTE",
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
