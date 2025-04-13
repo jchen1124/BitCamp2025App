@@ -1,4 +1,7 @@
-name: Deploy Flutter Web to GitHub Pages
+- name: Set up Flutter
+  uses: subosito/flutter-action@v2
+  with:
+    flutter-version: '3.19.6'  # 👈 Use your exact local version
 
 on:
   push:
