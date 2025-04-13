@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF222831),
+      backgroundColor: const Color(0xFF1C1C1C), // Slightly lighter background
       appBar: AppBar(
         backgroundColor: const Color(0xFF0FF0FC),
         elevation: 10,
@@ -32,7 +32,9 @@ class HomeScreen extends StatelessWidget {
             Text(
               "Welcome,",
               style: TextStyle(
-                color: Colors.white.withOpacity(0.6),
+                color: Colors.white.withOpacity(
+                  0.8,
+                ), // Increased opacity for contrast
                 fontSize: 22,
               ),
             ),
@@ -93,16 +95,19 @@ class HomeScreen extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFF1F1F1F), Color(0xFF2C2C2C)],
+          colors: [
+            Color(0xFF343434),
+            Color(0xFF2C2C2C),
+          ], // Slightly lighter gradient
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.tealAccent.withOpacity(0.2),
-            blurRadius: 12,
-            spreadRadius: 1,
+            color: Colors.tealAccent.withOpacity(0.3), // Subtle shadow
+            blurRadius: 15,
+            spreadRadius: 2,
             offset: const Offset(0, 6),
           ),
         ],
@@ -125,7 +130,9 @@ class HomeScreen extends StatelessWidget {
               description,
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.white.withOpacity(0.75),
+                color: Colors.white.withOpacity(
+                  0.85,
+                ), // Slightly higher opacity for better contrast
               ),
             ),
             const SizedBox(height: 28),
@@ -144,8 +151,10 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(14),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFF0FF0FC).withOpacity(0.4),
-                        blurRadius: 12,
+                        color: const Color(
+                          0xFF0FF0FC,
+                        ).withOpacity(0.6), // More visible shadow
+                        blurRadius: 15,
                         offset: const Offset(0, 6),
                       ),
                     ],
