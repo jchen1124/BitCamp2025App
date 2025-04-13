@@ -1,8 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:bitcamp_2025/screens/create_profile.dart';
 
-class StartScreen extends StatelessWidget {
+class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
+
+  @override
+  State<StartScreen> createState() => _StartScreenState();
+}
+
+class _StartScreenState extends State<StartScreen> {
+  double _iconScale = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    // Trigger animation after build starts
+    Future.delayed(Duration(milliseconds: 300), () {
+      setState(() {
+        _iconScale = 1.0;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +31,9 @@ class StartScreen extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              colorScheme.primary.withOpacity(0.9),
-              colorScheme.secondary.withOpacity(0.3),
+              Colors.black,
+              colorScheme.primary.withOpacity(0.8),
+              colorScheme.secondary.withOpacity(0.4),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -23,26 +42,28 @@ class StartScreen extends StatelessWidget {
         child: SafeArea(
           child: Center(
             child: Padding(
-              // Adds horizontal space to keep the content from hugging the edges of the screen.
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  // Eye icon with animated scale
                   Container(
-                    // Background circle of the eye icon
                     padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white.withOpacity(0.1),
+                      color: Colors.white.withOpacity(0.05),
+                      boxShadow: [
+                        BoxShadow(
+                          color: colorScheme.secondary.withOpacity(0.6),
+                          blurRadius: 30,
+                          spreadRadius: 5,
+                        ),
+                      ],
                     ),
-                    //Icon animation
-                    child: TweenAnimationBuilder(
-                      tween: Tween<double>(begin: 0.0, end: 1.0),
-                      duration: const Duration(seconds: 2),
+                    child: AnimatedScale(
+                      scale: _iconScale,
+                      duration: Duration(seconds: 2),
                       curve: Curves.easeOutBack,
-                      builder: (context, value, child) {
-                        return Transform.scale(scale: value, child: child);
-                      },
                       child: Icon(
                         Icons.remove_red_eye_outlined,
                         size: 120,
@@ -50,22 +71,31 @@ class StartScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
+
+                  const SizedBox(height: 30),
+
                   Text(
-                    "Echo Vision",
+                    "ECHO VISION",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 42,
+                      fontWeight: FontWeight.w900,
                       color: Colors.white,
-                      letterSpacing: 1.5,
+                      letterSpacing: 2,
+                      shadows: [
+                        Shadow(
+                          blurRadius: 30,
+                          color: colorScheme.secondary,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 24),
+
+                  const SizedBox(height: 40),
+
                   ElevatedButton(
-                    // Go to information page
                     onPressed: () {
-                      // Goes to the users information page when pushed
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -75,23 +105,23 @@ class StartScreen extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
-                      // Text color of the button
                       foregroundColor: colorScheme.primary,
-                      // Add padding inside
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 32,
-                        vertical: 16,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 40,
+                        vertical: 18,
                       ),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(50),
                       ),
-                      elevation: 10,
+                      elevation: 12,
+                      shadowColor: colorScheme.secondary.withOpacity(0.5),
                     ),
-                    child: Text(
-                      "Get Started",
+                    child: const Text(
+                      "GET STARTED",
                       style: TextStyle(
+                        fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        letterSpacing: 1,
                       ),
                     ),
                   ),

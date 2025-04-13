@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: const Color(0xFF222831),
       appBar: AppBar(
         backgroundColor: const Color(0xFF0FF0FC),
         elevation: 10,
@@ -72,6 +72,7 @@ class HomeScreen extends StatelessWidget {
               description: "Review and analyze your past environments.",
               buttonText: "View History",
               onPressed: () {
+                //Implement if we need it
                 // TODO: Implement
               },
             ),
@@ -81,6 +82,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  // You can reuse _buildFeatureCard
   Widget _buildFeatureCard(
     BuildContext context, {
     required String title,
