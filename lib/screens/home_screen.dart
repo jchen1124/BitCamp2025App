@@ -9,82 +9,78 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1C1C1C), // Slightly lighter background
+      backgroundColor: const Color(0xFF0D0D0D), // Slightly deeper black
       appBar: AppBar(
         backgroundColor: const Color(0xFF0FF0FC),
-        elevation: 10,
+        elevation: 6,
         title: const Text(
           "Echo Vision",
           style: TextStyle(
-            fontSize: 28,
+            fontSize: 26,
             color: Colors.black,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 1.5,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.2,
           ),
         ),
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Welcome,",
-              style: TextStyle(
-                color: Colors.white.withOpacity(
-                  0.8,
-                ), // Increased opacity for contrast
-                fontSize: 22,
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 28.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Welcome,",
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.95),
+                  fontSize: 22,
+                ),
               ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              name,
-              style: const TextStyle(
-                color: Color(0xFF0FF0FC),
-                fontSize: 34,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.2,
+              const SizedBox(height: 6),
+              Text(
+                name,
+                style: const TextStyle(
+                  color: Color(0xFF0FF0FC),
+                  fontSize: 34,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 1.3,
+                ),
               ),
-            ),
-            const SizedBox(height: 32),
+              const SizedBox(height: 36),
 
-            // Live View Card
-            _buildFeatureCard(
-              context,
-              title: "🔴 Live Environment View",
-              description:
-                  "Monitor real-time environmental conditions using our vision AI.",
-              buttonText: "Live View",
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LiveView()),
-                );
-              },
-            ),
+              _buildFeatureCard(
+                context,
+                title: "🔴 Live Environment View",
+                description:
+                    "Monitor real-time environmental conditions using our vision AI.",
+                buttonText: "Live View",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LiveView()),
+                  );
+                },
+              ),
 
-            const SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-            // History Card
-            _buildFeatureCard(
-              context,
-              title: "📼 View Recording History",
-              description: "Review and analyze your past environments.",
-              buttonText: "View History",
-              onPressed: () {
-                //Implement if we need it
-                // TODO: Implement
-              },
-            ),
-          ],
+              _buildFeatureCard(
+                context,
+                title: "📼 View Recording History",
+                description: "Review and analyze your past environments.",
+                buttonText: "View History",
+                onPressed: () {
+                  // Future implementation
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  // You can reuse _buildFeatureCard
   Widget _buildFeatureCard(
     BuildContext context, {
     required String title,
@@ -93,86 +89,71 @@ class HomeScreen extends StatelessWidget {
     required VoidCallback onPressed,
   }) {
     return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [
-            Color(0xFF343434),
-            Color(0xFF2C2C2C),
-          ], // Slightly lighter gradient
+          colors: [Color(0xFF1C1C1C), Color(0xFF292929)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.tealAccent.withOpacity(0.3), // Subtle shadow
-            blurRadius: 15,
-            spreadRadius: 2,
-            offset: const Offset(0, 6),
+            color: Colors.tealAccent.withOpacity(0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 5),
           ),
         ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-              ),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 22),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
             ),
-            const SizedBox(height: 12),
-            Text(
-              description,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white.withOpacity(
-                  0.85,
-                ), // Slightly higher opacity for better contrast
-              ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            description,
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.white.withOpacity(0.88),
+              height: 1.4,
             ),
-            const SizedBox(height: 28),
-            Center(
-              child: InkWell(
-                onTap: onPressed,
-                borderRadius: BorderRadius.circular(14),
-                splashColor: Colors.cyanAccent,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 36,
-                    vertical: 14,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF0FF0FC),
-                    borderRadius: BorderRadius.circular(14),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(
-                          0xFF0FF0FC,
-                        ).withOpacity(0.6), // More visible shadow
-                        blurRadius: 15,
-                        offset: const Offset(0, 6),
-                      ),
-                    ],
-                  ),
-                  child: Text(
-                    buttonText,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 1.1,
-                    ),
-                  ),
+          ),
+          const SizedBox(height: 24),
+          Center(
+            child: ElevatedButton(
+              onPressed: onPressed,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF0FF0FC),
+                foregroundColor: Colors.black,
+                elevation: 8,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 30,
+                  vertical: 14,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+              ),
+              child: Text(
+                buttonText,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1,
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
